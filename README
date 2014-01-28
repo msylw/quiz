@@ -1,0 +1,40 @@
+Simple tool for creating quizzes. Simple touch-friendly interface,
+(thanks to bootstrap should work with PC, smartphone, tablet etc).
+
+Uses django and bootstrap, check representative licences.
+
+Django has to be available on system before use, bootstrap is included.
+
+Usage:
+cd quiz                    # to where manage.py is
+python manage.py syncdb    # create db
+# when asked create admin account
+
+python runserver
+
+* Open browser, go to http://127.0.0.1:8000/admin
+* Login using data entered above
+
+* Create template, enter name and template content, example:
+From {{question.0}} to {{question.1}}
+
+* Add some Proposals (possible answers) below, ex:
+Yes
+No
+
+* Order index is used to sort the entries in particular order later.
+  Value provides value for each answer
+
+* Create experiment, use the above template, example question:
+north
+south
+
+* User questions below are asked before the actual quiz (this is for things 
+  like user age etc)
+
+* Make sure experiment is active
+
+* Go to http://localhost:8000 The new experiment should appear. 
+
+Play a little more, and you can figure out the rest.
+
