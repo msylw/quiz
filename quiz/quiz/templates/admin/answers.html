@@ -1,0 +1,51 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+{% load tags %}
+{% block extrastyle %}
+<style>
+table {
+	margin: 30px;
+	border: solid 1px;
+	}
+
+tr:nth-child(odd) {
+	background-color: #eee;
+	}
+</style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; <a href="{% url 'admin:quiz_experiment_change' exp %}">{{ exp }}</a> &rsaquo; Answers
+</div>
+{% endblock %}
+
+{% block content %}
+<table><caption>{% trans 'Answers report' %}</caption>
+<tr><th>{% trans 'Question' %}</th>
+{% for p in proposals %}
+<th>{{forloop.counter}}</th>
+{% endfor %}
+</tr>
+
+{% for q in questions %}
+<tr><th>{{q.question}}</th>
+{% for p in proposals %}
+<td>{{q.answers|return_item:p.id}}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+
+<table><caption>{% trans 'Answers legend' %}</caption>
+<tr><th>{% trans 'Code' %}</th><th>{% trans 'Description' %}</th></tr>
+{% for p in proposals %}
+<tr><td>{{forloop.counter}}</td><td>{{p.description|safe}}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}
+        

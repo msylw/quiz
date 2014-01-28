@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% block content %}
+	<div class="well">
+		<p>{% trans "Thank you for taking the task to answer our questions!" %}</p>
+		{% if returning_user %}
+		<p>{% trans "You will continue with an interrupted session, only questions not answered so far will be shown." %}</p>
+		{% endif %}
+		<p>{% trans "If you would like to interrupt your session and finish later, you can close the browser, but please return to this address. It has you session id included, so your answers won't mix up with other." %}</p>
+		<p>{% trans "Press the button below to go to the questions" %}</p>
+		<p class="text-center">
+			<button type="button" class="btn btn-primary" onclick="window.location='{% url "userinfo" exp=exp uuid=uuid %}'">{% trans "Next" %}</button>		
+		</p>
+	</div>
+{% endblock %}

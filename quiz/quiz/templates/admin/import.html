@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+{% load tags %}
+{% block extrastyle %}
+<style>
+table {
+	margin: 30px;
+	border: solid 1px;
+	}
+
+tr:nth-child(odd) {
+	background-color: #eee;
+	}
+</style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; <a href="{% url 'admin:quiz_experiment_change' exp %}">{{ exp }}</a> &rsaquo; Answers
+</div>
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'admin:quiz_experiment_import' exp %}" 
+	method="post" 
+	enctype="multipart/form-data" >
+{% csrf_token %}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+<table>
+    {{ form.as_table }}
+</table>
+<input type="submit" value="Submit" />
+
+</form>
+{% endblock %}

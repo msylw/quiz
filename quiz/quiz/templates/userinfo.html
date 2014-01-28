@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% block css %}
+<style>
+.answerbutton {
+	white-space: normal;
+	text-align: left;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="well">
+	<p>{% trans "Before we start, please answer few questions about yourself." %}</p>
+	<p>{% trans "This will help us better understand how different groups of user see our system." %}</p>
+
+	<form role="form" method="post" >
+	{% csrf_token %}
+	
+	<div class="row">
+		{% for question in userquestions %}
+			<div class="form-group {{question.style}}">
+			{% if question.missing %}
+				<p class="text-danger">{% trans "Please make your choice" %}</p>
+			{% endif %}
+				<label for="{{question.name}}">{{question.question}}</label>
+				<div data-toggle="buttons">
+				{% for answer in question.choices %}
+				  <label class="btn btn-primary btn-block
+	  			  {% if question.selected == forloop.counter0 %}active{% endif %}">
+				    <input type="radio" name="{{question.name}}" value="{{forloop.counter0}}"
+				    {% if question.selected == forloop.counter0 %} checked{% endif %}>
+				    {{answer}}
+				  </label>
+				{% endfor %}
+				</div>
+
+			{% if not forloop.last %}
+				<!-- Add the extra clearfix for only the required viewport -->
+				<div class="clearfix visible-md visible-sm"></div>
+			{% endif %}
+			</div>
+		{% endfor %}
+	</div>		
+
+	<p class="text-center">
+		<button type="submit" class="btn btn-primary">{% trans "Go to questions" %}</button>
+	</p>
+	</form>
+</div>
+{% endblock %}

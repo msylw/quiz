@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="well">
+		<p>Thank you for answering our questions!</p>
+		<p>Your comment:</p>
+		<div class="well">
+			{{comment}}
+		</div>
+		If you would like to change it, click button below.
+		<p class="text-center">
+			<button type="button" class="btn btn-primary" onclick="window.history.back()">Go back to comment form</button>
+		</p>
+		<p>If you don't want to change it, then you can close this window now, all your answers were recorded.</p>
+		<p>Please do not take this quiz again yourself</p>
+		<p>If someone else would like to start now, please press the button below to start from the beginning</p>
+		<p class="text-center">
+			<button type="button" class="btn btn-primary" onclick="window.location='{% url "start" exp=exp uuid=None %}'">Go to questions for new user.</button>		
+		</p>
+	</div>
+{% endblock %}

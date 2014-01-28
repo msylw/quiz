@@ -1,0 +1,22 @@
+{% extends "main.html" %} 
+{% load i18n %}
+{% block css %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+{% block content %}
+<div class="well">
+	<p>{% trans "Thank you for finishing! If you have any comments or thoughts about this questionnaire, please enter them below.!" %}</p>
+
+	<form role="form" method="post" action="{% url "finished" exp=exp uuid=uuid %}">
+		{% csrf_token %}
+		
+		<textarea name="comment" class="form-control" rows="5"></textarea>
+		<br/>
+		<p class="text-center">
+			<button type="submit" class="btn btn-primary">{% trans "Finish!" %}</button>		
+		</p>
+	</form>
+</div>
+{% endblock %}
+		

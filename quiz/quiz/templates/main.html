@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html>
+<head>
+<title>{{title|default:_("Sentence Quiz!")}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+{% block css %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+</head>
+<body>
+	<div class="container">
+	{% block language %}
+	<div class="pull-right">
+	<form action="{% url 'set_language' %}" method="post">
+		{% csrf_token %}
+		<input name="next" type="hidden" value="{{ redirect_to }}" />
+		<select name="language">
+		{% get_language_info_list for LANGUAGES as languages %}
+		{% for language in languages %}
+		<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+		    {{ language.name_local }} ({{ language.code }})
+		</option>
+		{% endfor %}
+		</select>
+		<input type="submit" value="Go" />
+	</form>
+	</div>
+	{% endblock %}
+	<div class="page-header">
+  		<h1>{{title|default:_("Sentence Quiz!")}}<small>{{subtitle|default:""}}</small></h1>
+	</div>
+		<div class="row">
+			<div class="col-lg-12">
+			{% block content %}
+				<div class="well">
+					<p>{% blocktrans %}This website is intended to evaluate performance of the sentence generation system.{% endblocktrans %}</p>
+					<p>{% trans "Every evaluator should answer the questions only once." %}</p>
+					<p>{% trans "Please follow instruction on screen." %}</p>
+					<p>{% blocktrans %}Please select quiz below.{% endblocktrans %}</p>
+					{% for exp in experiments %}
+					<p class="text-center">
+					<button type="button" class="btn btn-primary" 
+						onclick="window.location='{% url "start" exp=exp.id uuid="" %}'">{{exp.name}}</button>
+					</p>
+					{% endfor %}
+				</div>
+			{% endblock %}
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/static/js/bootstrap.min.js"></script>
+	{% block final_script %}
+	{% endblock %} 
+</body>
+</html>

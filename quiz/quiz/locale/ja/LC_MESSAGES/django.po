@@ -1,0 +1,335 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-14 13:55+0900\n"
+"PO-Revision-Date: 2013-09-27 13:49+0900\n"
+"Last-Translator: Michal Sylwester <msylw@media.eng.hokudai.ac.jp>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: admin.py:64
+msgid "No answers yet"
+msgstr "回答報告"
+
+#: admin.py:67
+#, python-format
+msgid "<a href=\"%(url)s\">Show report for %(count)d answer</a>"
+msgid_plural "<a href=\"%(url)s\">Show report for %(count)d answers</a>"
+msgstr[0] "<a href=\"%(url)s\">%(count)d答えのレポートを表示する</a>"
+
+#: admin.py:93
+#, python-format
+msgid "Answers report for experiment \"%s\""
+msgstr "答えは実験\"%s\"に対して報告"
+
+#: admin.py:99
+msgid "Answers"
+msgstr "回答報告"
+
+#: models.py:18
+msgid "comment"
+msgstr ""
+
+#: models.py:21
+msgid "user"
+msgstr ""
+
+#: models.py:22
+msgid "users"
+msgstr ""
+
+#: models.py:26
+#, fuzzy
+msgid "template name"
+msgstr "テンプレート"
+
+#: models.py:29
+msgid ""
+"Include parts of the question using {{question.&lt;num&gt;}}         syntax, "
+"where &lt;num&gt; is index of line in question (0-based)"
+msgstr ""
+"{{question.&lt;num&gt;}} 構文を使用して質問の一部を、含む場合、問題の行の&lt;"
+"num&gt;はインデックス（0ベース）"
+
+#: models.py:36
+msgid "template"
+msgstr "テンプレート"
+
+#: models.py:37
+msgid "templates"
+msgstr "テンプレート"
+
+#: models.py:41
+msgid "experiment name"
+msgstr "実験名"
+
+#: models.py:42
+msgid "is active"
+msgstr "能動的"
+
+#: models.py:49
+msgid "experiment"
+msgstr "実験名"
+
+#: models.py:50
+msgid "experiments"
+msgstr "実験名"
+
+#: models.py:54 models.py:84 models.py:92
+msgid "question"
+msgstr "答え"
+
+#: models.py:55
+msgid "Question about user, try to be delicate..."
+msgstr ""
+
+#: models.py:56
+#, fuzzy
+msgid "answers"
+msgstr "回答報告"
+
+#: models.py:57
+msgid ""
+"Possible answers (one per line).\n"
+"            Try to make the answers self-explanatory\n"
+"            (able to stand alone without knowing the question)"
+msgstr ""
+
+#: models.py:60
+msgid "style"
+msgstr ""
+
+#: models.py:61
+msgid ""
+"Width style (like Bootstraps), ex: \"col-md-3 col-sm-6\". \n"
+"            Remember to check how it worked out on all platforms! "
+msgstr ""
+
+#: models.py:64
+#, fuzzy
+msgid "order"
+msgstr "順位指数"
+
+#: models.py:65
+msgid ""
+"Fields will be sorted by this value.\n"
+"            If same value is reused, the order may be undefined"
+msgstr ""
+
+#: models.py:72
+#, fuzzy
+msgid "user question"
+msgstr "答え"
+
+#: models.py:73
+#, fuzzy
+msgid "user questions"
+msgstr "質問"
+
+#: models.py:80
+msgid "useranswer"
+msgstr ""
+
+#: models.py:85
+msgid "Each line is referenced separately in the template. Order matters."
+msgstr "各行は、テンプレート内で別々に参照されます。注文事項。"
+
+#: models.py:93
+msgid "questions"
+msgstr "質問"
+
+#: models.py:98
+msgid "description"
+msgstr "説明"
+
+#: models.py:99
+msgid "order index"
+msgstr "順位指数"
+
+#: models.py:100
+msgid "value"
+msgstr "値"
+
+#: settings.py:41
+msgid "English"
+msgstr "英語"
+
+#: settings.py:42
+msgid "Japanese"
+msgstr "日本語"
+
+#: templates/comment.html:9
+msgid ""
+"Thank you for finishing! If you have any comments or thoughts about this "
+"questionnaire, please enter them below.!"
+msgstr ""
+
+#: templates/comment.html:17
+msgid "Finish!"
+msgstr ""
+
+#: templates/main.html:5 templates/main.html.py:40
+msgid "Sentence Quiz!"
+msgstr "文クイズ！"
+
+#: templates/main.html:46
+msgid ""
+"This website is intended to evaluate performance of the sentence generation "
+"system."
+msgstr "このウェブサイトは、文生成システムの性能を評価することを意図している。"
+
+#: templates/main.html:47
+msgid "Every evaluator should answer the questions only once."
+msgstr "すべての評価者は、一度だけ質問に答える必要があります。"
+
+#: templates/main.html:48
+msgid "Please follow instruction on screen."
+msgstr "画面上の指示に従ってください。"
+
+#: templates/main.html:49
+msgid "Please select quiz below."
+msgstr "下記のクイズ選択してください。"
+
+#: templates/quiz.html:64
+msgid "Please wait..."
+msgstr "しばらくお待ちください..."
+
+#: templates/start.html:5
+msgid "Thank you for taking the task to answer our questions!"
+msgstr ""
+"私たちの質問に答えるために、タスクを割いていただきありがとうございます！"
+
+#: templates/start.html:7
+msgid ""
+"You will continue with an interrupted session, only questions not answered "
+"so far will be shown."
+msgstr ""
+"あなたは、中断されたセッションを続行します、唯一の質問が表示され、これまでに"
+"答えられません。"
+
+#: templates/start.html:9
+msgid ""
+"If you would like to interrupt your session and finish later, you can close "
+"the browser, but please return to this address. It has you session id "
+"included, so your answers won't mix up with other."
+msgstr ""
+"あなたのセッションを中断したいと、後で仕上げたい場合は、ブラウザを閉じます"
+"が、このアドレスへの復帰をお願いすることができます。それはあなたに含まれる"
+"セッションIDを持っているので、あなたの答えは、他と混同しません。"
+
+#: templates/start.html:10
+msgid "Press the button below to go to the questions"
+msgstr "質問に行くには、以下のボタンを押してください。"
+
+#: templates/start.html:12
+msgid "Next"
+msgstr ""
+
+#: templates/userinfo.html:15
+msgid "Before we start, please answer few questions about yourself."
+msgstr ""
+
+#: templates/userinfo.html:16
+msgid ""
+"This will help us better understand how different groups of user see our "
+"system."
+msgstr ""
+
+#: templates/userinfo.html:25
+msgid "Please make your choice"
+msgstr ""
+
+#: templates/userinfo.html:48
+#, fuzzy
+msgid "Go to questions"
+msgstr "質問に進みます。"
+
+#: templates/admin/answers.html:20
+msgid "Home"
+msgstr "ホーム"
+
+#: templates/admin/answers.html:27
+msgid "Answers report"
+msgstr "回答報告"
+
+#: templates/admin/answers.html:28
+msgid "Question"
+msgstr "質問"
+
+#: templates/admin/answers.html:44
+msgid "Answers legend"
+msgstr "回答の凡例"
+
+#: templates/admin/answers.html:45
+msgid "Code"
+msgstr "コード"
+
+#: templates/admin/answers.html:45
+msgid "Description"
+msgstr "説明"
+
+#: templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "Djangoのサイト管理者"
+
+#: templates/admin/base_site.html:7
+msgid "Django administration"
+msgstr "ジャンゴのサイト管理者"
+
+#: templates/admin/index.html:9
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "%(name)s アプリケーションで使用可能なモデル。"
+
+#: templates/admin/index.html:13
+msgid "Browse"
+msgstr "ブラウズ"
+
+#: templates/admin/index.html:14
+msgid "Add new"
+msgstr "新たに追加"
+
+#: templates/admin/index.html:21
+msgid "You don't have permission to edit anything."
+msgstr "あなたは何を編集する権限がありません。"
+
+#~ msgid "Below 18"
+#~ msgstr "18歳下"
+
+#~ msgid "19-21"
+#~ msgstr "19歳ー21歳"
+
+#~ msgid "22-28"
+#~ msgstr "22歳ー28歳"
+
+#~ msgid "29-34"
+#~ msgstr "29歳ー34歳"
+
+#~ msgid "35-39"
+#~ msgstr "35歳ー39歳"
+
+#~ msgid "40-50"
+#~ msgstr "40歳ー50歳"
+
+#~ msgid "Over 50"
+#~ msgstr "50歳以上"
+
+#~ msgid "Male"
+#~ msgstr "男"
+
+#~ msgid "Female"
+#~ msgstr "女"
+
+#~ msgid "Start!"
+#~ msgstr "スタート"

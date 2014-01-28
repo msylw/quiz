@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+{% block content %}
+<div id="content-main">
+
+{% if app_list %}
+    {% for app in app_list %}
+        <div class="module">
+        <table summary="{% blocktrans with name=app.name %}Models available in the {{ name }} application.{% endblocktrans %}">
+        {% for model in app.models %}
+            <tr>
+                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Browse' %}</a></td>
+                <td><a href="{{ model.add_url }}" class="addlink">{% trans 'Add new' %}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>{% trans "You don't have permission to edit anything." %}</p>
+{% endif %}
+
+<p>To create new experiment:</p>
+<ol>
+<li>Look into templates whether there is one suitable for your experiment.</li>
+<ul><li>If not create new template and proposals - list of possible answers to the questions</li>
+</ul>
+<li>Add new experiment</li>
+<li>Select template</li>
+<li>Fill out questions</li>
+</ol>
+<p>Remember: In template you can use {% templatetag openvariable %}question.0{% templatetag closevariable %}, 
+{% templatetag openvariable %}question.1{% templatetag closevariable %} etc. These tags will be replaced
+with specified (0-based) lines from questions. For example template:
+<pre>From {% templatetag openvariable %}question.0{% templatetag closevariable %} to {% templatetag openvariable %}question.1{% templatetag closevariable %}</pre> 
+when used with question
+<pre>north
+south</pre> will show up as <pre>From north to south</pre></p>
+</div>
+{% endblock %}

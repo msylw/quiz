@@ -1,0 +1,93 @@
+{% extends "main.html" %} 
+{% load i18n %}
+{% block css %}
+<style>
+.answerbutton {
+	white-space: normal;
+	text-align: left;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+</style>
+{% endblock %}
+{% block script %}
+<script>
+var question_id = {{question.id}}
+var waiting = false
+var start_time = {{question.time}}
+var awaiting_data = false
+
+function answer(button, answer) {
+	$(button).removeClass("btn-primary").addClass("btn-success")
+	window.scrollTo(0,0)
+	waiting = true
+	window.setTimeout(function(){timeout(button)},1000)
+	$("#pleasewait").modal("show")
+	csrftoken = $.cookie('csrftoken');
+	$.ajax({
+		type: "POST",
+		url: "{% url "answer" exp=exp uuid=uuid %}",
+		data: { question: question_id, answer: answer, time: start_time},
+		headers: {"X-CSRFToken": csrftoken},
+		success: function(data) {
+			question_id = data.question.id
+			start_time = data.question.time
+			if(question_id==-1) {
+				window.setTimeout(function(){
+					window.location="{% url "comment" exp=exp uuid=uuid %}"
+				}, 500)
+				$(".progress-bar").attr("aria-valuenow", 100)
+				$(".progress-bar").width("100%")
+				$(".progress-bar > .sr-only").html("100% Complete")
+			}
+			awaiting_data = data; // Don't show now, wait until we hide modal
+			timeout(button)
+		}, 
+		datatype: "json"
+	})
+}
+
+function timeout(button) {
+	if(!waiting) {
+		$(button).removeClass("btn-success").addClass("btn-primary")
+		$("#question").html(awaiting_data.question.text)
+		$(".progress-bar").attr("aria-valuenow", awaiting_data.question.percent)
+		$(".progress-bar").width(awaiting_data.question.percent + "%")
+		$(".progress-bar > .sr-only").html(awaiting_data.question.percent + "% Complete")
+		$("#pleasewait").modal("hide")
+	}
+	waiting = false
+}
+</script>
+{% endblock %}
+{% block final_script %}
+<script src="/static/js/jquery.cookie.js"></script>
+{% endblock %} 
+{% block content %}
+<div id="progress" class="progress">
+  <div class="progress-bar progress-striped active" role="progressbar" 
+  	aria-valuenow="{{question.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{question.percent}}%;">
+    <span class="sr-only">{{question.percent}}% Complete</span>
+  </div>
+</div>
+<div class="well">
+	<div id="question">
+		{{question.text}}
+	</div>
+	{% for proposal in proposals %}			
+		<button type="button" onclick="answer(this, {{proposal.value}})" 
+			class="btn btn-primary btn-block answerbutton">{{proposal.description|safe}}</button>
+	{% endfor %}
+</div>
+<div id="pleasewait" class="modal print-hidden" data-keyboard="false" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+        	<p class="text-center">
+				{% trans "Please wait..." %}
+			</p>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+{% endblock %}
